@@ -55,26 +55,37 @@ Resources:
       TargetKeyId:
         !Ref KMSKey            
 
-  ECR:
+  ecrRepo:
     Type: AWS::ECR::Repository
     DependsOn:
       - KMSKey
       - KeyAlias
-    Properties:
-      RepositoryName: !Join [ "-" , [ !Ref env, !Ref repoName] ]
+
+    Properties: 
+      RepositoryName: !Sub ${repoName}-repo
+      ImageScanningConfiguration: 
+        ScanOnPush: true
+      ImageTagMutability: "IMMUTABLE"
       EncryptionConfiguration:     
           encryptionType: "KMS"
           KmsKey: !Ref KeyAlias
-      ImageScanningConfiguration:
-          ScanOnPush: true
-      ImageTagMutability: "IMMUTABLE"
-    
+      
       Tags:
-        Name: !Join [ "-", [ !Ref env , "-collibradq-ecr-registry"] ]
-        component: !Ref componentValue
+        - Key: "Name"
+          Value: !Join [ "-", [ !Ref env , "dq-ecr-repo" ] ]
+        - Key: "component"
+          Value: !Ref componentValue
+
 
       
-      
+
+
+
+
+
+
+     
+
       
       
       
