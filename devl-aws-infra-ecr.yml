@@ -12,10 +12,11 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "982542462374"
+    Default: "117582662550"
 
-  RepoName:
+  repoName:
     Type: String
+    Description: Name for ecr repo
     Default: "collibradq-ecr-registry"
 
   componentValue:
@@ -59,23 +60,19 @@ Resources:
     DependsOn:
       - KMSKey
       - KeyAlias
-    Properties: 
-      RepositoryName: !Join ["-",  [!Ref env , !Ref RepoName]]
-      
+    Properties:
+      RepositoryName: !Join [ "-" , [ !Ref env, !Ref repoName] ]
+
       EncryptionConfiguration:     
           encryptionType: "KMS"
           KmsKey: !Ref KeyAlias
-
       ImageScanningConfiguration:
           ScanOnPush: True
-      ImageTagMutability: "IMMUTABLE" 
-
-      Tags: 
-        Name: !Join [ "-", [ !Ref env , !Ref RepositoryName ] ]
+      ImageTagMutability: "IMMUTABLE"
+    
+      Tags:
+        Name: !Join [ "-", [ !Ref env , "-collibradq-ecr-registry"] ]
         component: !Ref componentValue
-        
-
-
 
       
       
