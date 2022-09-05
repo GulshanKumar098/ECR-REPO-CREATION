@@ -1,9 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "AWS CloudFormation Devl ECR Registry"
-
-
 Parameters:
-
   env:
     Type: String
     Description: Deployment Environment
