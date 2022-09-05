@@ -25,7 +25,13 @@ jobs:
     - name: run ecr 
       run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
 
-
+    - name:
+      run:  |
+      aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 793503547410.dkr.ecr.us-east-1.amazonaws.com
+      docker build -t collibradq-ecr-registry-repo .
+      docker tag collibradq-ecr-registry-repo:latest 793503547410.dkr.ecr.us-east-1.amazonaws.com/collibradq-ecr-registry-repo:latest
+      docker push 793503547410.dkr.ecr.us-east-1.amazonaws.com/collibradq-ecr-registry-repo:latest
+      
 #     - name: Login to Amazon ECR
 #       id: login-ecr
 #       uses: aws-actions/amazon-ecr-login@v1
@@ -41,3 +47,4 @@ jobs:
 #       run:
 #         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
 #         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
