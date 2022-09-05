@@ -62,12 +62,11 @@ Resources:
       - KeyAlias
     Properties:
       RepositoryName: !Join [ "-" , [ !Ref env, !Ref repoName] ]
-
       EncryptionConfiguration:     
           encryptionType: "KMS"
           KmsKey: !Ref KeyAlias
       ImageScanningConfiguration:
-          ScanOnPush: True
+          ScanOnPush: true
       ImageTagMutability: "IMMUTABLE"
     
       Tags:
