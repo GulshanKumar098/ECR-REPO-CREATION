@@ -1,4 +1,4 @@
-name: ECR Creation
+name: ECR
 
 on:
   push:
@@ -23,5 +23,5 @@ jobs:
 
     
     - name: run ecr 
-      run: aws cloudformation deploy --stack-name dq-eCR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
+      run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
   
