@@ -12,7 +12,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "991034841932"
+    Default: "982542462374"
 
   Registryname:
     Type: String
