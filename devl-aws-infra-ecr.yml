@@ -29,7 +29,7 @@ Resources:
   KMSKey:
     Type: AWS::KMS::Key
     Properties:
-      Description: "key for dq ecr"
+      Description: "key for dq ECR"
       EnableKeyRotation: True
       KeyPolicy:
         Version: "2012-10-17"
