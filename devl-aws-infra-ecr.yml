@@ -14,7 +14,7 @@ Parameters:
     Description: "AWS Account Number"
     Default: "982542462374"
 
-  RepositoryName:
+  RepoName:
     Type: String
     Default: "collibradq-ecr-registry"
 
@@ -60,10 +60,12 @@ Resources:
       - KMSKey
       - KeyAlias
     Properties: 
-      RepositoryName: !Join ["-",  [!Ref env , !Ref RepositoryName]]
+      RepositoryName: !Join ["-",  [!Ref env , !Ref RepoName]]
+      
       EncryptionConfiguration:     
           encryptionType: "KMS"
           KmsKey: !Ref KeyAlias
+
       ImageScanningConfiguration:
           ScanOnPush: True
       ImageTagMutability: "IMMUTABLE" 
