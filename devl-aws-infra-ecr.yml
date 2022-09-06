@@ -73,10 +73,10 @@ Resources:
         - Key: "component"
           Value: !Ref componentValue
 
-Outputs:
-  RepoName:
-    Description: Repo name
-    Value: !GetAtt ecrRepo.RepositoryName
+# Outputs:
+#   RepoName:
+#     Description: Repo name
+#     Value: !GetAtt ecrRepo.RepositoryName
       
 
 
