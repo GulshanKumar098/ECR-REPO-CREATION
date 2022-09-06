@@ -15,48 +15,53 @@ on:
          - prod
 
 
+
+
+         
+
+
 jobs:
   Deploy:
     runs-on: ubuntu-latest
+    steps:
+     
+    - name: Checkout
+      uses: actions/checkout@v2
 
-    Steps:
-     - name: Checkout
-       uses: actions/checkout@v2
-
-     - name: Configure AWS Credentials
-       uses: aws-actions/configure-aws-credentials@v1
-       with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: us-east-1
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+       aws-region: us-east-1
 
         
 
-     - name: "Set environment variables for devl environment"
-       if: ${{ github.event.inputs.environment == 'devl' }}
-       run: |
-         echo "ENVIRONMENT=devl" >> $GITHUB_ENV
-         echo "AWS_ACCT=600831013510" >> $GITHUB_ENV
+    - name: "Set environment variables for devl environment"
+      if: ${{ github.event.inputs.environment == 'devl' }}
+      run: |
+        echo "ENVIRONMENT=devl" >> $GITHUB_ENV
+        echo "AWS_ACCT=600831013510" >> $GITHUB_ENV
 
-     - name: "Set environment variables for prod environment"
-       if: ${{ github.event.inputs.environment == 'prod' }}
-       run: |
-         echo "ENVIRONMENT=prod" >> $GITHUB_ENV
-         echo "AWS_ACCT=188549407646" >> $GITHUB_ENV
+    - name: "Set environment variables for prod environment"
+      if: ${{ github.event.inputs.environment == 'prod' }}
+      run: |
+        echo "ENVIRONMENT=prod" >> $GITHUB_ENV
+        echo "AWS_ACCT=188549407646" >> $GITHUB_ENV
 
-     - name: run-ecr 
-       run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
+    - name: run-ecr 
+      run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
         
-     - name: Login to Amazon ECR
-       id: login-ecr
-       uses: aws-actions/amazon-ecr-login@v1
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
 
-     - name: Build, tag, and push image to Amazon ECR
-       env:
+    - name: Build, tag, and push image to Amazon ECR
+      env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: collibradq-ecr-registry-repo ##${{steps.run-ecr.outputs.repositoryName}} 
         IMAGE_TAG: ${{ github.sha }}
-        run: |
+      run: |
          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
