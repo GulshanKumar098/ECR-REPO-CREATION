@@ -45,8 +45,8 @@ jobs:
         echo "AWS_ACCT=188549407646" >> $GITHUB_ENV
 
     - name: run-ecr 
-      run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
-        
+      #run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
+      run: aws cloudformation deploy --stack-name dq-ecr-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-aws-infra-ecr.yml  --tags Name=dq-ecr-stack-${{ env.ENVIRONMENT }} component=ae-collibra-dq  --region us-east-1  
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
@@ -54,7 +54,7 @@ jobs:
     - name: Build, tags, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: ${{steps.run-ecr.outputs.URI}} #collibradq-ecr-registry-repo    
+        ECR_REPOSITORY: collibradq-ecr-registry-repo    #${{steps.run-ecr.outputs.URI}}
         IMAGE_TAG: ${{ github.sha }}
       run: |
          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
