@@ -1,4 +1,4 @@
-name: ECR Deploy 
+name: ECR Deploy test
 
 on:
   workflow_dispatch:
