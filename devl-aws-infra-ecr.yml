@@ -20,8 +20,6 @@ Parameters:
     Type: String
     Default: "ecr-collibra-dq"
 
-
-
 Resources:
 
   KMSKey:
@@ -72,9 +70,6 @@ Resources:
           Value: !Join [ "-", [ !Ref env , "dq-ecr-repo" ] ]
         - Key: "component"
           Value: !Ref componentValue
-
-
-
 
 
 
