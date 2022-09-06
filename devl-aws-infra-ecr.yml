@@ -9,7 +9,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "793503547410"
+    Default: "600831013510"
 
   repoName:
     Type: String
@@ -76,7 +76,7 @@ Resources:
 Outputs:
   RepoName:
     Description: Repo name
-    Value: !Ref RepositoryName
+    Value: !GetAtt Repositories.RepositoryName
       
 
 
