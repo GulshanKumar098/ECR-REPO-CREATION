@@ -64,7 +64,7 @@ Resources:
         ScanOnPush: true
       ImageTagMutability: "IMMUTABLE"
       EncryptionConfiguration:     
-          encryptionType: "KMS"
+          EncryptionType: "KMS"
           KmsKey: !Ref KeyAlias
       
       Tags:
@@ -73,7 +73,10 @@ Resources:
         - Key: "component"
           Value: !Ref componentValue
 
-
+Outputs:
+  RepoName:
+    Description: Repo name
+    Value: !Ref RepositoryName
       
 
 
