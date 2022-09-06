@@ -1,5 +1,7 @@
-name: ECR Deploy test
 
+
+
+name: ECR Deploy test
 on:
   workflow_dispatch:
     inputs:
