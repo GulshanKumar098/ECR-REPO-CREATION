@@ -36,7 +36,7 @@ jobs:
       if: ${{ github.event.inputs.environment == 'devl' }}
       run: |
         echo "ENVIRONMENT=devl" >> $GITHUB_ENV
-        echo "AWS_ACCT=804027447394" >> $GITHUB_ENV
+        echo "AWS_ACCT=612304474122" >> $GITHUB_ENV
 
     - name: "Set environment variables for prod environment"
       if: ${{ github.event.inputs.environment == 'prod' }}
@@ -55,7 +55,7 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tags, and push image to Amazon ECR
+    - name:  load, tags, and push image to Amazon ECR
       run: |
   
         docker image import demo.tar owl-web:owl-web
