@@ -59,7 +59,7 @@ jobs:
       run: |
   
         docker image import demo.tar owl-web:owl-web
-        docker tag owl-web:owl-web 804027447394.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
+        docker tag owl-web:owl-web 612304474122.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
         docker push 612304474122.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
 
         
