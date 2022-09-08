@@ -57,7 +57,9 @@ jobs:
 
     - name: Build, tags, and push image to Amazon ECR
       run: |
+  
         docker image import demo.tar owl-web:owl-web
+        docker tag owl-web:owl-web 804027447394.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
         docker push 804027447394.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
 
         
