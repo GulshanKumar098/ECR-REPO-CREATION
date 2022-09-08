@@ -57,7 +57,7 @@ Resources:
       - KeyAlias
 
     Properties: 
-      RepositoryName: !Sub ${repoName}-repo
+      RepositoryName: !Join [ "-", [ !Ref env , !Ref repoName   ] ]        #!Sub ${repoName}-repo
       ImageScanningConfiguration: 
         ScanOnPush: true
       ImageTagMutability: "IMMUTABLE"
