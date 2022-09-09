@@ -36,7 +36,7 @@ jobs:
       if: ${{ github.event.inputs.environment == 'devl' }}
       run: |
         echo "ENVIRONMENT=devl" >> $GITHUB_ENV
-        echo "AWS_ACCT=612304474122" >> $GITHUB_ENV
+        echo "AWS_ACCT=109336866806" >> $GITHUB_ENV
 
     - name: "Set environment variables for prod environment"
       if: ${{ github.event.inputs.environment == 'prod' }}
@@ -59,8 +59,8 @@ jobs:
       run: |
   
         docker image import demo.tar owl-web:owl-web
-        docker tag owl-web:owl-web 612304474122.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
-        docker push 612304474122.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
+        docker tag owl-web:owl-web 109336866806.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
+        docker push 109336866806.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
 
         
 

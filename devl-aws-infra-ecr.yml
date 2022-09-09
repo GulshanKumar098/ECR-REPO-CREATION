@@ -9,7 +9,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "612304474122"
+    Default: "109336866806"
 
   repoName:
     Type: String
@@ -55,7 +55,6 @@ Resources:
     DependsOn:
       - KMSKey
       - KeyAlias
-
     Properties: 
       RepositoryName: !Join [ "-", [ !Ref env , !Ref repoName   ] ]        #!Sub ${repoName}-repo
       ImageScanningConfiguration: 
