@@ -9,7 +9,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "109336866806"
+    Default: "388535267413"
 
   repoName:
     Type: String
