@@ -15,7 +15,11 @@ on:
 jobs:
   Deploy:
     runs-on: ubuntu-latest
-    environment: dev
+    #this is for control the deployment via approval method 1
+    # alrerady craeted env with name dev in github setings 
+    environment: dev  
+    
+ 
 
     
     steps:
@@ -23,6 +27,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
+#       # For mannual approval method 2 
+#     - uses: trstringer/manual-approval@v1
+#       with:
+#         approvers: gulshan3798
+          
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
