@@ -15,6 +15,7 @@ on:
 jobs:
   Deploy:
     runs-on: ubuntu-latest
+    environment: dev
 
     
     steps:
@@ -36,7 +37,7 @@ jobs:
       if: ${{ github.event.inputs.environment == 'devl' }}
       run: |
         echo "ENVIRONMENT=devl" >> $GITHUB_ENV
-        echo "AWS_ACCT=109336866806" >> $GITHUB_ENV
+        echo "AWS_ACCT=388535267413" >> $GITHUB_ENV
 
     - name: "Set environment variables for prod environment"
       if: ${{ github.event.inputs.environment == 'prod' }}
@@ -56,11 +57,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name:  load, tags, and push image to Amazon ECR
-      run: |
-  
-        docker image import demo.tar owl-web:owl-web
-        docker tag owl-web:owl-web 109336866806.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
-        docker push 109336866806.dkr.ecr.us-east-1.amazonaws.com/devl-collibradq-ecr-registry:owl-web
+      run: echo "deploying "
 
         
 
